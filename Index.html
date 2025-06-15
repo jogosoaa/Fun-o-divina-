@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Divina Fusão - Jogo Anime</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial';
+      background: linear-gradient(to right, #1a1a2e, #16213e);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #ffcc00;
+    }
+    .status {
+      margin: 10px 0;
+    }
+    .actions button {
+      background: #ffcc00;
+      border: none;
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .actions button:hover {
+      background: #ffd633;
+    }
+    #log {
+      margin-top: 20px;
+      max-height: 200px;
+      overflow-y: auto;
+      background-color: rgba(255,255,255,0.1);
+      padding: 10px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌌 Divina Fusão</h1>
+  <div class="status">
+    <p><strong>J1:</strong> Vida: <span id="vidaJ1">100</span> | Poder: Fogo / Gelo / Portal</p>
+    <p><strong>J2:</strong> Vida: <span id="vidaJ2">100</span> | Poder: Sombra / Sol / Sangue</p>
+  </div>  <div class="actions">
+    <button onclick="atacar('J1')">🔥 Ataque J1</button>
+    <button onclick="atacar('J2')">🌑 Ataque J2</button>
+    <button onclick="curar('J1')">💧 Cura J1</button>
+    <button onclick="curar('J2')">🌙 Cura J2</button>
+    <button onclick="especial()">✨ Ataque Especial (Fusão)</button>
+  </div>  <div id="log"></div>  <script>
+    let vidaJ1 = 100;
+    let vidaJ2 = 100;
+    const log = document.getElementById("log");
+
+    function atualizar() {
+      document.getElementById("vidaJ1").innerText = vidaJ1;
+      document.getElementById("vidaJ2").innerText = vidaJ2;
+    }
+
+    function atacar(jogador) {
+      const dano = Math.floor(Math.random() * 15) + 10;
+      log.innerHTML += `<p>${jogador} atacou o inimigo causando ${dano} de dano!</p>`;
+      atualizar();
+    }
+
+    function curar(jogador) {
+      const cura = Math.floor(Math.random() * 20) + 10;
+      if (jogador === 'J1') vidaJ1 += cura;
+      else vidaJ2 += cura;
+      log.innerHTML += `<p>${jogador} se curou em ${cura} de vida!</p>`;
+      atualizar();
+    }
+
+    function especial() {
+      const dano = Math.floor(Math.random() * 50) + 30;
+      log.innerHTML += `<p>💥 Fusão Divina ativada! Ataque combinado causou ${dano} de dano!</p>`;
+      atualizar();
+    }
+
+    atualizar();
+  </script></body>
+</html>
